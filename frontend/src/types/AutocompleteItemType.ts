@@ -1,0 +1,1 @@
+export interface AutocompleteItemType { lat: number; lng: number; text: string }
