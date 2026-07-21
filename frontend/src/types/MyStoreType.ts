@@ -17,7 +17,33 @@ export interface MyStoreType {
     dropoff: string;
     currentCycleUsedHrs: number;
   };
-  handleSubmit: (e: React.SubmitEvent) => void;
+  handleSubmit: (e: React.SubmitEvent) => Promise<void>;
   formStep: number;
   //
+  data: {
+    code: string;
+    routes: {
+      legs: {
+        steps: never[];
+        weight: number;
+        summary: string;
+        duration: number;
+        distance: number;
+      }[];
+      weight_name: string;
+      geometry: {
+        coordinates: number[][];
+        type: string;
+      };
+      weight: number;
+      duration: number;
+      distance: number;
+    }[];
+    waypoints: {
+      hint: string;
+      location: number[];
+      name: string;
+      distance: number;
+    }[];
+  };
 }
