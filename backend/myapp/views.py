@@ -32,25 +32,21 @@ def simulate(request: HttpRequest):
     data = res.json()
 
 
-    all_days_events = []
+    all_days_logs = []
 
     day = 1
     time = 0.0
 
     # state: Literal['DRIVING', 'ON_DUTY_NOT_DRIVING', 'SLEEPER_BERTH', 'OFF_DUTY'] = 'DRIVING'
 
-    for leg in data.routes[0].legs:
-        miles_left = leg.distance / 1609.34
-        hrs_left = leg.duration / 3600
+    # for leg in data.routes[0].legs:
+    #     miles_left = leg.distance / 1609.34
+    #     hrs_left = leg.duration / 3600
 
-        while miles_left > 1e-6:
-            miles_left - 
+    #     while miles_left > 1e-6:
+    #         miles_left - 
             
 
-
-
-
-
-    
+    data['days'] = all_days_logs
 
     return JsonResponse({"data": data}, status=200)
