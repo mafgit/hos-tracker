@@ -10,7 +10,7 @@ export default function Home() {
   // return <>{formStep === 0 ? <Form /> : <ELDTable />}</>;
   return (
     <>
-      <BackgroundVideo />
+      {formStep === 0 && <BackgroundVideo />}
 
       <div className="relative flex flex-col justify-center items-center min-h-screen gap-4 z-40">
         {formStep === 0 ? (

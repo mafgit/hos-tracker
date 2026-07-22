@@ -162,7 +162,7 @@ export default function Form() {
         Submit
       </button>
 
-      {error && <p className="text-red-500">{error}</p>}
+      {error && <p className="text-[#ff8688] font-semibold">{error}</p>}
     </form>
   );
 }

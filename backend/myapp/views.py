@@ -1,4 +1,5 @@
 import json
+from typing import Literal
 
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
@@ -31,11 +32,33 @@ def simulate(request: HttpRequest):
     data = res.json()
 
 
+    all_days_events = []
+
     day = 1
     time = 0.0
+    legs = data.routes[0].legs
+    len_legs = len(legs)
+    leg_idx = 0
+    current_leg = legs[leg_idx]
+    current_leg_dur = current_leg.duration / 3600.0 # hrs
+    current_leg_dist = current_leg.distance / 1609.34 # miles
+    current_leg_avg_speed = current_leg_dist / current_leg_dur
+    dist_left = current_leg_dist
+    dur_left = current_leg_dur
+    continuous_driving_time = 0.0
+    state: Literal['DRIVING', 'ON_DUTY_NOT_DRIVING', 'SLEEPER_BERTH', ''] = 'DRIVING'
+    continuous_driving_dist = 0.0
+    total_on_duty_since_reset = 0.0
+    while leg_idx < len_legs and dist_left > 0:
+        # on duty
+        if state == 'DRIVING' or state == 'ON_DUTY_NOT_DRIVING':
+            if state =='DRIVING':
+                pass
+            else:
+                pass
+        else:
+            pass
 
-    while True:
-        
 
 
 

@@ -16,17 +16,18 @@ const events: EventType[] = [
   },
 ];
 
+const startX = 40;
+const boxWidth = 40;
+const startY = 40;
+const endX = 1000;
+const endY = 200;
+
 export default function OneDayELDTable({ day }: { day: DayLogDataType }) {
   const pickup = useMyStore((s) => s.pickup);
   const dropoff = useMyStore((s) => s.dropoff);
 
   function eventsToPathString(events: EventType[]) {
     const path: string[] = [];
-    const startX = 40;
-    const startY = 40;
-    const endX = 1000;
-    const endY = 200;
-
     let lastTime = 0;
     let str = "";
     events.forEach((event, i) => {
@@ -49,11 +50,31 @@ export default function OneDayELDTable({ day }: { day: DayLogDataType }) {
         <svg viewBox="0 0 1040 200" className="w-full h-[200px]">
           <g className="stroke-bg">
             {/* horizontal lines */}
-            <line x1={40} y1={40} x2={1000} y2={40} />
-            <line x1={40} y1={80} x2={1000} y2={80} />
-            <line x1={40} y1={120} x2={1000} y2={120} />
-            <line x1={40} y1={160} x2={1000} y2={160} />
-            <line x1={40} y1={200} x2={1000} y2={200} />
+            <line x1={startX} y1={startY} x2={endX} y2={startY} />
+            <line
+              x1={startX}
+              y1={startY + boxWidth}
+              x2={endX}
+              y2={startY + boxWidth}
+            />
+            <line
+              x1={startX}
+              y1={startY + boxWidth * 2}
+              x2={endX}
+              y2={startY + boxWidth * 2}
+            />
+            <line
+              x1={startX}
+              y1={startY + boxWidth * 3}
+              x2={endX}
+              y2={startY + boxWidth * 3}
+            />
+            <line
+              x1={startX}
+              y1={startY + boxWidth * 4}
+              x2={endX}
+              y2={startY + boxWidth * 4}
+            />
 
             <text x={0} y={60} fontSize="10" fill="#000000" fontWeight={"100"}>
               On Duty

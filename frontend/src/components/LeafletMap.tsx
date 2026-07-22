@@ -15,6 +15,7 @@ import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
 import { useMyStore } from "../store/useMyStore";
 import { FaBackward, FaTruck } from "react-icons/fa6";
+import { swap } from "../utils/swap";
 
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
@@ -24,21 +25,19 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function LeafletMap() {
-  // Center coordinates [Latitude, Longitude]
-  const position = [23, 65.5];
-  const data = useMyStore((s) => s.data);
+  const simulationData = useMyStore((s) => s.simulationData);
   const current = useMyStore((s) => s.current);
   const dropoff = useMyStore((s) => s.dropoff);
   const pickup = useMyStore((s) => s.pickup);
   const setFormStep = useMyStore((s) => s.setFormStep);
 
-  if (!data || !current || !pickup || !dropoff) {
+  if (!simulationData || !current || !pickup || !dropoff) {
     return null;
   }
 
-  const a = data.routes[0].geometry.coordinates.map((c) => [c[1], c[0]]);
+  const polygonRoute = simulationData.routes[0].geometry.coordinates.map(swap);
 
-  if (!a.length) return null;
+  if (!polygonRoute.length) return null;
 
   return (
     <div className="overflow-hidden w-full absolute top-0 left-0 h-full">
@@ -51,12 +50,12 @@ export default function LeafletMap() {
 
       <header className="bg-primary flex gap-2 items-center justify-center text-lg text-white px-4 py-1 z-50 absolute right-[20px] top-[10px] flex gap-2 items-center justify-center text-md rounded-md">
         <FaTruck />
-        <h1 className="font-semibold">Driver Tracker</h1>
+        <h1 className="font-semibold">HOS Tracker</h1>
       </header>
 
       <MapContainer
         className="w-full h-full relative z-20"
-        center={a[0]}
+        center={polygonRoute[0]}
         zoom={9}
         maxZoom={18}
         scrollWheelZoom={true}
@@ -69,17 +68,17 @@ export default function LeafletMap() {
           maxZoom={18}
         />
 
-        <Polyline positions={a} />
+        <Polyline positions={polygonRoute} />
 
-        <Marker position={current}>
+        <Marker position={swap(simulationData.waypoints[0].location)}>
           <Popup>Current</Popup>
         </Marker>
 
-        <Marker position={pickup}>
+        <Marker position={swap(simulationData.waypoints[1].location)}>
           <Popup>Pickup</Popup>
         </Marker>
 
-        <Marker position={dropoff}>
+        <Marker position={swap(simulationData.waypoints[2].location)}>
           <Popup>Dropoff</Popup>
         </Marker>
       </MapContainer>
