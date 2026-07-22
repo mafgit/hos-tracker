@@ -18,7 +18,6 @@ export interface MyStoreType {
     currentCycleUsedHrs: number;
   };
   handleSubmit: (e: React.SubmitEvent) => Promise<void>;
-  formStep: number;
   //
   data: {
     code: string;
@@ -46,4 +45,10 @@ export interface MyStoreType {
       distance: number;
     }[];
   };
+
+  //
+  maximized: boolean;
+  setMaximized: (maximized: boolean) => void;
+  setFormStep: (formStep: number) => void;
+  formStep: number;
 }

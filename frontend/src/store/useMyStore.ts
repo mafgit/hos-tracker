@@ -31,6 +31,9 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
     })),
   //
   formStep: 0,
+  setFormStep: (formStep) => set({ formStep }),
+  maximized: false,
+  setMaximized: (maximized) => set({ maximized }),
 
   //
   async handleSubmit(e: React.SubmitEvent) {

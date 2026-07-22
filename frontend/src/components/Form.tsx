@@ -44,6 +44,8 @@ export default function Form() {
     if (trimmedValue) {
       timeout.current = setTimeout(async () => {
         const suggestions = await fetchSuggestions(trimmedValue);
+        console.log(suggestions);
+
         setAutocompletions(suggestions);
       }, 500);
     }
@@ -51,104 +53,112 @@ export default function Form() {
 
   return (
     <form
-      className="flex flex-col bg-green-400 rounded-md w-[300px] p-4 gap-2"
+      // onBlur={() => setFocus(null)}
+      className="flex flex-col bg-green-400 rounded-md min-w-[300px] max-w-[500px] p-4 gap-4"
       onSubmit={handleSubmit}
     >
-      <div>
-        <label htmlFor="current">Current Location</label>
-        <div className="relative">
-          <input
-            // required todo:
-            className="w-full bg-white rounded-md px-2 py-1"
-            type="text"
-            placeholder="Enter current location"
-            onChange={handleChange}
-            name="current"
-            id="current"
-            value={inputData.current}
-            // onBlur={() => setFocus(null)}
-          />
-
-          {focus === "current" && (
-            <Autocompletions
-              autocompletions={autocompletions}
+      <div className="grid grid-cols-2 gap-2">
+        <div>
+          <label className="text-gray-900 font-semibold text-sm" htmlFor="current">Current Location</label>
+          <div className="relative">
+            <input
+              // required todo:
+              className="text-sm w-full bg-white/50 rounded-md px-2 py-2 text-black"
+              type="text"
+              placeholder="Chicago, IL"
+              onChange={handleChange}
               name="current"
-              setCoord={setCurrent}
-              setFocus={setFocus}
+              id="current"
+              value={inputData.current}
+              // onBlur={() => setFocus(null)}
             />
-          )}
+
+            {focus === "current" && (
+              <Autocompletions
+                autocompletions={autocompletions}
+                name="current"
+                setCoord={setCurrent}
+                setFocus={setFocus}
+              />
+            )}
+          </div>
         </div>
-      </div>
 
-      <div>
-        <label htmlFor="pickup">Pickup Location</label>
-        <div className="relative">
-          <input
-            // required todo:
-            className="w-full bg-white rounded-md px-2 py-1"
-            type="text"
-            placeholder="Enter pickup location"
-            onChange={handleChange}
-            name="pickup"
-            id="pickup"
-            value={inputData.pickup}
-            // onBlur={() => setFocus(null)}
-          />
-
-          {focus === "pickup" && (
-            <Autocompletions
-              autocompletions={autocompletions}
+        <div>
+          <label className="text-gray-900 font-semibold text-sm" htmlFor="pickup">Pickup Location</label>
+          <div className="relative">
+            <input
+              // required todo:
+              className="text-sm w-full bg-white/50 rounded-md px-2 py-2 text-black"
+              type="text"
+              placeholder="Chicago, IL"
+              onChange={handleChange}
               name="pickup"
-              setCoord={setPickup}
-              setFocus={setFocus}
+              id="pickup"
+              value={inputData.pickup}
+              // onBlur={() => setFocus(null)}
             />
-          )}
-        </div>
-      </div>
 
-      <div>
-        <label htmlFor="dropoff">Dropoff Location</label>
-        <div className="relative">
+            {focus === "pickup" && (
+              <Autocompletions
+                autocompletions={autocompletions}
+                name="pickup"
+                setCoord={setPickup}
+                setFocus={setFocus}
+              />
+            )}
+          </div>
+        </div>
+
+        <div>
+          <label className="text-gray-900 font-semibold text-sm" htmlFor="dropoff">Dropoff Location</label>
+          <div className="relative">
+            <input
+              // required todo:
+              className="text-sm w-full bg-white/50 rounded-md px-2 py-2 text-black"
+              type="text"
+              placeholder="Washington, DC"
+              onChange={handleChange}
+              name="dropoff"
+              id="dropoff"
+              value={inputData.dropoff}
+              // onBlur={() => setFocus(null)}
+            />
+
+            {focus === "dropoff" && (
+              <Autocompletions
+                autocompletions={autocompletions}
+                name="dropoff"
+                setCoord={setDropoff}
+                setFocus={setFocus}
+              />
+            )}
+          </div>
+        </div>
+
+        <div>
+          <label className="text-gray-900 font-semibold text-sm" htmlFor="currentCycleUsedHrs">
+            Current Cycle Used (Hours)
+          </label>
           <input
             // required todo:
-            className="w-full bg-white rounded-md px-2 py-1"
-            type="text"
-            placeholder="Enter dropoff location"
+            className="text-sm w-full bg-white/50 rounded-md px-2 py-2 text-black"
+            type="number"
+            max={70}
+            min={0}
+            placeholder="30"
             onChange={handleChange}
-            name="dropoff"
-            id="dropoff"
-            value={inputData.dropoff}
-            // onBlur={() => setFocus(null)}
+            name="currentCycleUsedHrs"
+            id="currentCycleUsedHrs"
+            value={inputData.currentCycleUsedHrs}
           />
-
-          {focus === "dropoff" && (
-            <Autocompletions
-              autocompletions={autocompletions}
-              name="dropoff"
-              setCoord={setDropoff}
-              setFocus={setFocus}
-            />
-          )}
         </div>
       </div>
 
-      <div>
-        <label htmlFor="currentCycleUsedHrs">Current Cycle Used (Hours)</label>
-        <input
-          // required todo:
-          className="w-full bg-white rounded-md px-2 py-1"
-          type="number"
-          max={70}
-          min={0}
-          placeholder="Enter current cycle used hours"
-          onChange={handleChange}
-          name="currentCycleUsedHrs"
-          id="currentCycleUsedHrs"
-          value={inputData.currentCycleUsedHrs}
-        />
-      </div>
-
-      <button className="w-full px-2 py-1 bg-blue-400" type="submit">
+      <button
+        className="w-full text-sm font-semibold px-2 py-2 bg-bg text-white rounded-md cursor-pointer hover:bg-primary transition-colors duration-200"
+        type="submit"
+      >
         Submit
       </button>
 

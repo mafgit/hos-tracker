@@ -1,1 +1,1 @@
-export interface AutocompleteItemType { lat: number; lng: number; text: string }
+export interface AutocompleteItemType { lat: number; lng: number; text: string; type?: string; osm_id: number;  }
