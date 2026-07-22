@@ -41,7 +41,6 @@ export default function ELDTables() {
             <option
               value={i + 1}
               key={"day-" + i + 1}
-              selected={selectedDay === i + 1}
             >
               Day {i + 1}
             </option>

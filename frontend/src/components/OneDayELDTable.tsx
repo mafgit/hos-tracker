@@ -1,4 +1,3 @@
-import type { EventType } from "../types/EventType";
 import type { DayLog } from "../types/SimulationDataType";
 
 const arr25 = Array.from({ length: 25 });
@@ -15,18 +14,17 @@ function timeToPixels(time: number): number {
 }
 
 function logsToPathString(oneDayLogs: DayLog[]): string {
+  console.log("oneDayLogs", oneDayLogs);
   const path: string[] = ["M"];
-  let str = "";
   oneDayLogs.forEach((log, i) => {
     const y =
       log.state === "OFF_DUTY"
-        ? startY + boxWidth * 0.5
+        ? startY + boxWidth * 3.5
         : log.state === "SLEEPER_BERTH"
           ? startY + boxWidth * 1.5
           : log.state === "DRIVING"
             ? startY + boxWidth * 2.5
-            : startY + boxWidth * 3.5;
-
+            : startY + boxWidth * 0.5; // ON_DUTY_NOT_DRIVING
 
     const x1 = timeToPixels(log.from);
     const x2 = timeToPixels(log.to);
@@ -34,7 +32,11 @@ function logsToPathString(oneDayLogs: DayLog[]): string {
     const to = `${x2} ${y}`;
     path.push(from, to);
   });
-  return path.join(" ");
+
+  if (oneDayLogs.length === 1) return "";
+  const str = path.join(" ");
+  console.log(str);
+  return str;
 }
 
 export default function OneDayELDTable({
@@ -137,14 +139,16 @@ export default function OneDayELDTable({
               }),
             )}
 
-            <path
-              d={logsToPathString(oneDayLogs)}
-              fill="none"
-              stroke="red"
-              strokeWidth="3"
-              strokeLinejoin="miter"
-              strokeLinecap="square"
-            />
+            {oneDayLogs.length > 0 && (
+              <path
+                d={logsToPathString(oneDayLogs)}
+                fill="none"
+                stroke="red"
+                strokeWidth="3"
+                strokeLinejoin="miter"
+                strokeLinecap="square"
+              />
+            )}
           </g>
         </svg>
       </div>
