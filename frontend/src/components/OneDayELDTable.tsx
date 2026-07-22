@@ -1,20 +1,8 @@
-import { useMyStore } from "../store/useMyStore";
-import type { DayLogDataType } from "../types/DayLogDataType";
 import type { EventType } from "../types/EventType";
+import type { DayLog } from "../types/SimulationDataType";
 
-const arr = Array.from({ length: 25 });
-const arr2 = Array.from({ length: 4 }).fill(Array.from({ length: 24 }));
-
-const events: EventType[] = [
-  {
-    name: "O",
-    time: 0,
-  },
-  {
-    name: "OD",
-    time: 0,
-  },
-];
+const arr25 = Array.from({ length: 25 });
+const arr2d = Array.from({ length: 4 }).fill(Array.from({ length: 24 }));
 
 const startX = 40;
 const boxWidth = 40;
@@ -22,27 +10,38 @@ const startY = 40;
 const endX = 1000;
 const endY = 200;
 
-export default function OneDayELDTable({ day }: { day: DayLogDataType }) {
-  const pickup = useMyStore((s) => s.pickup);
-  const dropoff = useMyStore((s) => s.dropoff);
+function timeToPixels(time: number): number {
+  return Math.floor((time / 25) * 1000) + startX;
+}
 
-  function eventsToPathString(events: EventType[]) {
-    const path: string[] = [];
-    let lastTime = 0;
-    let str = "";
-    events.forEach((event, i) => {
-      // const time = event.time;
-      // const y = event.type === 1 ? 40 : event.type === 2 ? 80 : event.type === 3 ? 120 : 160;
-      // const x =
-      // if (i === 0) {
-      //   str = `M ${x} ${y}`;
-      //   lastTime = time;
-      // }
-      // path.push(str);
-    });
-    return "M 2 2 L 5 5";
-  }
+function logsToPathString(oneDayLogs: DayLog[]): string {
+  const path: string[] = ["M"];
+  let str = "";
+  oneDayLogs.forEach((log, i) => {
+    const y =
+      log.state === "OFF_DUTY"
+        ? startY + boxWidth * 0.5
+        : log.state === "SLEEPER_BERTH"
+          ? startY + boxWidth * 1.5
+          : log.state === "DRIVING"
+            ? startY + boxWidth * 2.5
+            : startY + boxWidth * 3.5;
 
+
+    const x1 = timeToPixels(log.from);
+    const x2 = timeToPixels(log.to);
+    const from = `${x1} ${y}`;
+    const to = `${x2} ${y}`;
+    path.push(from, to);
+  });
+  return path.join(" ");
+}
+
+export default function OneDayELDTable({
+  oneDayLogs,
+}: {
+  oneDayLogs: DayLog[];
+}) {
   return (
     <div className="flex gap-1">
       {/*  */}
@@ -93,7 +92,7 @@ export default function OneDayELDTable({ day }: { day: DayLogDataType }) {
             </text>
 
             {/* vertical lines */}
-            {arr.map((_, i) => (
+            {arr25.map((_, i) => (
               <g key={"v-" + i}>
                 <text
                   x={(i + 1) * 40}
@@ -109,7 +108,7 @@ export default function OneDayELDTable({ day }: { day: DayLogDataType }) {
             ))}
 
             {/* inner 15 minute interval lines */}
-            {arr2.map((row, y) =>
+            {arr2d.map((row, y) =>
               row.map((_, x) => {
                 const thisX = (x + 1) * 40;
                 const thisY = (y + 1) * 40;
@@ -139,10 +138,10 @@ export default function OneDayELDTable({ day }: { day: DayLogDataType }) {
             )}
 
             <path
-              d={eventsToPathString(events)}
+              d={logsToPathString(oneDayLogs)}
               fill="none"
-              stroke="black"
-              strokeWidth="2"
+              stroke="red"
+              strokeWidth="3"
               strokeLinejoin="miter"
               strokeLinecap="square"
             />

@@ -1,5 +1,6 @@
 import type { CoordType } from "./CoordType";
 import type { FormInputDataType } from "./FormInputDataType";
+import type { SimulationDataType } from "./SimulationDataType";
 
 export interface MyStoreType {
   pickup: CoordType | null;
@@ -25,30 +26,5 @@ export interface MyStoreType {
   formStep: number;
 
   //
-  simulationData: {
-    code: string;
-    routes: {
-      legs: {
-        steps: never[];
-        weight: number;
-        summary: string;
-        duration: number;
-        distance: number;
-      }[];
-      weight_name: string;
-      geometry: {
-        coordinates: number[][];
-        type: string;
-      };
-      weight: number;
-      duration: number;
-      distance: number;
-    }[];
-    waypoints: {
-      hint: string;
-      location: number[];
-      name: string;
-      distance: number;
-    }[];
-  };
+  simulationData: SimulationDataType
 }

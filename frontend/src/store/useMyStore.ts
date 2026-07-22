@@ -60,7 +60,6 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
   },
 
   simulationData: {
-    code: "Ok",
     routes: [
       {
         legs: [
@@ -1982,6 +1981,13 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
         name: "",
         distance: 10.06265464,
       },
+    ],
+    days: [
+      [
+        { state: "DRIVING", from: 0, to: 12 },
+        { state: "ON_DUTY_NOT_DRIVING", from: 12, to: 14 },
+        { state: "OFF_DUTY", from: 14, to: 24 },
+      ],
     ],
   },
 }));

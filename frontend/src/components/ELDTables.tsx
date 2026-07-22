@@ -1,6 +1,5 @@
 import { useState } from "react";
 import OneDayELDTable from "./OneDayELDTable";
-import type { DayLogDataType } from "../types/DayLogDataType";
 import { useMyStore } from "../store/useMyStore";
 import { FaAnglesDown, FaAnglesUp } from "react-icons/fa6";
 
@@ -8,8 +7,7 @@ export default function ELDTables() {
   const [selectedDay, setSelectedDay] = useState(1);
   const maximized = useMyStore((s) => s.maximized);
   const setMaximized = useMyStore((s) => s.setMaximized);
-
-  const days: DayLogDataType[] = [{}];
+  const simulationData = useMyStore((s) => s.simulationData);
 
   return (
     <div
@@ -39,15 +37,19 @@ export default function ELDTables() {
           value={selectedDay}
           onChange={(e) => setSelectedDay(Number(e.target.value))}
         >
-          {days.map((day, i) => (
-            <option value={i + 1} key={"day-" + i + 1}>
+          {simulationData.days.map((day, i) => (
+            <option
+              value={i + 1}
+              key={"day-" + i + 1}
+              selected={selectedDay === i + 1}
+            >
               Day {i + 1}
             </option>
           ))}
         </select>
       )}
 
-      <OneDayELDTable day={days[selectedDay - 1]} />
+      <OneDayELDTable oneDayLogs={simulationData.days[selectedDay - 1]} />
     </div>
   );
 }
