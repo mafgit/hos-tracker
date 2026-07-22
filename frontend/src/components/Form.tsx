@@ -54,7 +54,7 @@ export default function Form() {
   return (
     <form
       // onBlur={() => setFocus(null)}
-      className="flex flex-col bg-green-400 rounded-md min-w-[300px] max-w-[500px] p-4 gap-4"
+      className="flex flex-col bg-green-400/70 rounded-lg min-w-[300px] max-w-[500px] p-5 gap-5"
       onSubmit={handleSubmit}
     >
       <div className="grid grid-cols-2 gap-2">

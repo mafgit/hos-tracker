@@ -56,10 +56,10 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
     const data = await simulate(current, pickup, dropoff, currentCycleUsedHrs);
     console.log(data);
 
-    set({ formStep: 1 });
+    set({ formStep: 1, simulationData: data });
   },
 
-  data: {
+  simulationData: {
     code: "Ok",
     routes: [
       {

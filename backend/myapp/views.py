@@ -26,9 +26,20 @@ def simulate(request: HttpRequest):
     current_cycle_used_hrs = form.cleaned_data['current_cycle_used_hrs']
 
     url = f'https://router.project-osrm.org/route/v1/driving/{lng1},{lat1};{lng2},{lat2};{lng3},{lat3}?overview=full&geometries=geojson&steps=false'
-    print(url)
+    # print(url)
     res = requests.get(url)
     data = res.json()
-    print(data)
+
+
+    day = 1
+    time = 0.0
+
+    while True:
+        
+
+
+
+
+    
 
     return JsonResponse({"data": data}, status=200)

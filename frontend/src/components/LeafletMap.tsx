@@ -43,13 +43,13 @@ export default function LeafletMap() {
   return (
     <div className="overflow-hidden w-full absolute top-0 left-0 h-full">
       <button
-        className="px-2 py-1 cursor-pointer z-40 absolute left-[20px] top-[10px] flex gap-2 items-center justify-center text-xl "
+        className="px-2 py-1 cursor-pointer z-50 absolute left-[20px] top-[10px] flex gap-2 items-center justify-center text-xl "
         onClick={() => setFormStep(0)}
       >
         <FaBackward style={{ fontSize: 22 }} className="text-bg" />
       </button>
 
-      <header className="bg-primary flex gap-2 items-center justify-center text-lg text-white px-4 py-1 z-40 absolute right-[20px] top-[10px] flex gap-2 items-center justify-center text-md rounded-md">
+      <header className="bg-primary flex gap-2 items-center justify-center text-lg text-white px-4 py-1 z-50 absolute right-[20px] top-[10px] flex gap-2 items-center justify-center text-md rounded-md">
         <FaTruck />
         <h1 className="font-semibold">Driver Tracker</h1>
       </header>

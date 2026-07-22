@@ -14,7 +14,7 @@ export default function ELDTables() {
   return (
     <div
       className={
-        "select-none z-40 absolute flex items-center justify-center flex-col bottom-[22px] left-[50%] translate-x-[-50%] w-[90%] max-w-[1040px]  transform duration-200 " +
+        "select-none z-50 absolute flex items-center justify-center flex-col bottom-[22px] left-[50%] translate-x-[-50%] w-[90%] max-w-[1040px]  transform duration-200 " +
         (maximized ? "translate-y-[0] " : "translate-y-[200px]")
       }
     >

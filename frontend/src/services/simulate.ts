@@ -22,5 +22,5 @@ export async function simulate(
 
   const data = await res.json();
 
-  return data;
+  return data.data;
 }

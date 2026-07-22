@@ -19,7 +19,13 @@ export interface MyStoreType {
   };
   handleSubmit: (e: React.SubmitEvent) => Promise<void>;
   //
-  data: {
+  maximized: boolean;
+  setMaximized: (maximized: boolean) => void;
+  setFormStep: (formStep: number) => void;
+  formStep: number;
+
+  //
+  simulationData: {
     code: string;
     routes: {
       legs: {
@@ -45,10 +51,4 @@ export interface MyStoreType {
       distance: number;
     }[];
   };
-
-  //
-  maximized: boolean;
-  setMaximized: (maximized: boolean) => void;
-  setFormStep: (formStep: number) => void;
-  formStep: number;
 }
