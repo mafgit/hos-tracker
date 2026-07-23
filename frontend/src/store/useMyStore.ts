@@ -58,6 +58,7 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
       set({
         error:
           "Please select locations from autocomplete suggestions and fill all fields.",
+        loading: false,
       });
       return;
     }
