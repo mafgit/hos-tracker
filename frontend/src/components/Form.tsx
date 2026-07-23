@@ -44,7 +44,7 @@ export default function Form() {
     if (trimmedValue) {
       timeout.current = setTimeout(async () => {
         const suggestions = await fetchSuggestions(trimmedValue);
-        console.log(suggestions);
+        // console.log(suggestions);
 
         setAutocompletions(suggestions);
       }, 500);

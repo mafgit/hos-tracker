@@ -20,10 +20,10 @@ export async function simulate(
     headers: { "Content-Type": "application/json" },
   });
 
-  console.log('RESPONSE', res);
+  // console.log('RESPONSE', res);
   const data = await res.json();
 
-  console.log('DATA', data);
+  // console.log('DATA', data);
   
   return data;
 }

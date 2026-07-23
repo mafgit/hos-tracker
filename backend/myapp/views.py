@@ -19,7 +19,7 @@ def fetch_OSRM_data(form: Optional[SimulateRequestBody] = None):
     lat2 = form.cleaned_data['lat2']
     lng3 = form.cleaned_data['lng3']
     lat3 = form.cleaned_data['lat3']
-    print('FORM CLEANED', form.cleaned_data)
+    # print('FORM CLEANED', form.cleaned_data)
     url = f'https://router.project-osrm.org/route/v1/driving/{lng1},{lat1};{lng2},{lat2};{lng3},{lat3}?overview=full&geometries=geojson&steps=false'
     res = requests.get(url)
     data = res.json()
