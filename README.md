@@ -33,6 +33,7 @@ A full-stack web application for route planning and Electronic Logging Device (E
 
 ### 🎨 Frontend
 - 📦 **Zustand:** Centralized state management for trip parameters and log data.
+- 🗺️ **Leaflet**
 - 📘 **TypeScript**
 - ⚛️ **React**
 - 📍 **Photon (Komoot):** Geocoding API delivering fast autocomplete results with latitude and longitude data.
