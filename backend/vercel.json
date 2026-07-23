@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "config/wsgi.py",
+      "use": "@vercel/python"
+    }
+  ],
+  "functions": {
+    "config/wsgi.py": {
+      "runtime": "python3.12"
+    }
+  }
+}
