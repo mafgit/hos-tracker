@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 
 from pathlib import Path
 import os
+from corsheaders.defaults import default_headers, default_methods
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,12 +26,34 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--3sjz@azry6h1i2&hp@gu
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app"]
 
-ALLOWED_HOSTS = ['localhost', '127.0.0.1', '.vercel.app']  
-VERCEL_URL = os.environ.get('VERCEL_URL')
-if VERCEL_URL:
-    ALLOWED_HOSTS.append(VERCEL_URL)
+CORS_ALLOWED_ORIGINS = [
+"https://hos-tracker.vercel.app",
+"http://localhost:5173",
+"http://127.0.0.1:5173",
+]
 
+CORS_ALLOWED_ORIGIN_REGEXES = [
+r"^https://.*.vercel.app$",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+"https://hos-tracker.vercel.app",
+"http://localhost:5173",
+"http://127.0.0.1:5173",
+]
+
+MIDDLEWARE = [
+"django.middleware.security.SecurityMiddleware",
+"corsheaders.middleware.CorsMiddleware",
+"django.contrib.sessions.middleware.SessionMiddleware",
+"django.middleware.common.CommonMiddleware",
+"django.middleware.csrf.CsrfViewMiddleware",
+"django.contrib.auth.middleware.AuthenticationMiddleware",
+"django.contrib.messages.middleware.MessageMiddleware",
+"django.middleware.clickjacking.XFrameOptionsMiddleware",
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -46,30 +69,6 @@ INSTALLED_APPS = [
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
-# CORS_ALLOWED_ORIGINS = [
-#     os.environ.get('FRONTEND_URL', 'http://localhost:5173'),
-#     'https://vercel.app',
-#     'http://localhost:5173'
-# ]
-
-CORS_ALLOWED_ORIGINS = ['http://localhost:5173',
-    'http://127.0.0.1:5173', 'https://hos-tracker.vercel.app']
-FRONTEND_URL = os.environ.get('FRONTEND_URL')
-if FRONTEND_URL:
-    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
-
-CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
-
-MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
-    'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
-    'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.messages.middleware.MessageMiddleware',
-    'django.middleware.clickjacking.XFrameOptionsMiddleware',
-]
 
 ROOT_URLCONF = 'config.urls'
 
