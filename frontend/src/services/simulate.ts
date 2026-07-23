@@ -6,7 +6,7 @@ export async function simulate(
   dropoff: CoordType,
   currentCycleUsedHrs: number,
 ) {
-  const res = await fetch(`/api/simulate/`, {
+  const res = await fetch(`https://hos-tracker-backend.vercel.app/simulate/`, {
     method: "POST",
     body: JSON.stringify({
       lat1: current.lat,

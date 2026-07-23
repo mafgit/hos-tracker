@@ -63,14 +63,27 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
       return;
     }
 
-    const data = await simulate(current, pickup, dropoff, currentCycleUsedHrs);
+    try {
+      const data = await simulate(
+        current,
+        pickup,
+        dropoff,
+        currentCycleUsedHrs,
+      );
 
-    set({ loading: false });
+      set({ loading: false });
 
-    if (data.code !== "Ok") {
-      set({ error: data.message });
-    } else {
-      set({ formStep: 1, simulationData: data });
+      if (data.code !== "Ok") {
+        set({ error: data.message });
+      } else {
+        set({ formStep: 1, simulationData: data });
+      }
+    } catch (err) {
+      console.error(err);
+      set({
+        error: "An error occurred. Please try again.",
+        loading: false,
+      });
     }
   },
 }));
