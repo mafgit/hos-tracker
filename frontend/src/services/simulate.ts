@@ -6,7 +6,7 @@ export async function simulate(
   dropoff: CoordType,
   currentCycleUsedHrs: number,
 ) {
-  const res = await fetch("http://localhost:8000/simulate/", {
+  const res = await fetch(`${import.meta.env.VITE_API_URL}/simulate/`, {
     method: "POST",
     body: JSON.stringify({
       lat1: current.lat,
