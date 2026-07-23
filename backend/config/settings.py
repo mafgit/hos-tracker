@@ -25,13 +25,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--3sjz@azry6h1i2&hp@gu
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-print(f"DEBUG: {DEBUG}")
-print(f"ALLOWED_HOSTS: {os.environ.get('ALLOWED_HOSTS', '')}")
 
-ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
-env_allowed_hosts = os.environ.get('ALLOWED_HOSTS', '')
-if env_allowed_hosts:
-    ALLOWED_HOSTS = env_allowed_hosts.split(',') + ALLOWED_HOSTS
+# ALLOWED_HOSTS = ['.vercel.app', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['*']
+# env_allowed_hosts = os.environ.get('ALLOWED_HOSTS', '')
+# if env_allowed_hosts:
+#     ALLOWED_HOSTS = env_allowed_hosts.split(',') + ALLOWED_HOSTS
 
 # Application definition
 
@@ -46,16 +45,19 @@ INSTALLED_APPS = [
     'myapp'
 ]
 
-CORS_ALLOWED_ORIGINS = [
-    os.environ.get('FRONTEND_URL', 'http://localhost:5173'),
-    'https://vercel.app',
-    'http://localhost:5173'
-]
+# CORS_ALLOWED_ORIGINS = [
+#     os.environ.get('FRONTEND_URL', 'http://localhost:5173'),
+#     'https://vercel.app',
+#     'http://localhost:5173'
+# ]
 
-CSRF_TRUSTED_ORIGINS = [
-    os.environ.get('FRONTEND_URL', 'http://localhost:5173'),
-    'https://vercel.app'
-]
+CORS_ALLOWED_ORIGINS = ['*']
+
+CSRF_TRUSTED_ORIGINS = ['*']
+# CSRF_TRUSTED_ORIGINS = [
+#     os.environ.get('FRONTEND_URL', 'http://localhost:5173'),
+#     'https://vercel.app'
+# ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
