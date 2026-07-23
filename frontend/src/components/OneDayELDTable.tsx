@@ -21,7 +21,7 @@ function processDayLogs(oneDayLogs: DayLog[]) {
     OFF_DUTY: 0,
   };
 
-  oneDayLogs.forEach((log, i) => {
+  oneDayLogs.forEach((log) => {
     const y =
       log.state === "OFF_DUTY"
         ? startY + boxWidth * 3.5
@@ -173,7 +173,7 @@ export default function OneDayELDTable({
 
             {/* inner 15 minute interval lines */}
             {arr2d.map((row, y) =>
-              row.map((_, x) => {
+              (row as number[][]).map((_, x) => {
                 const thisX = startX + x * 40;
                 const thisY = (y + 1) * 40;
                 return (

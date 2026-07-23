@@ -39,7 +39,7 @@ export default function ELDTables() {
           value={selectedDay}
           onChange={(e) => setSelectedDay(Number(e.target.value))}
         >
-          {simulationData.days.map((day, i) => (
+          {simulationData.days.map((_, i) => (
             <option value={i + 1} key={"day-" + i + 1}>
               Day {i + 1}
             </option>
