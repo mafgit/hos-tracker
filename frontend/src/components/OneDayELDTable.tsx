@@ -63,8 +63,6 @@ export default function OneDayELDTable({
 }: {
   oneDayLogs: DayLog[];
 }) {
-  console.log(oneDayLogs);
-  
   const { pathString, sums } = processDayLogs(oneDayLogs);
   return (
     <div className="flex gap-1">
