@@ -1,6 +1,22 @@
 # 🚚 Hours of Service & ELD Logger
 
 A full-stack web application for route planning and Electronic Logging Device (ELD) simulation, built for a technical assessment by Spotter.ai. It calculates route geometries and generates 24-hour driver log sheets following a simplified implementation of Federal Motor Carrier Safety Administration (FMCSA) Hours of Service (HOS) guidelines.
+<table>
+  <tr>
+    <td>
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/fdf1e9fa-f379-44ad-87c8-c20ebba0ce90" style="border-radius: 18px;" />
+    </td>
+    <td width="10"></td> 
+    <td>
+<img width="1440" alt="image" src="https://github.com/user-attachments/assets/61595dfb-8188-42f2-89c1-c7d907d53104" style="border-radius: 18px;"/>
+    </td>
+  </tr>
+</table>
+
+
+
+
+
 
 ## ✨ Features
 
