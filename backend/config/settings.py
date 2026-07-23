@@ -26,7 +26,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--3sjz@azry6h1i2&hp@gu
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
-ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app"]
+ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app", "hos-tracker-backend.vercel.app"]
 
 CORS_ALLOWED_ORIGINS = [
 "https://hos-tracker.vercel.app",
@@ -35,8 +35,9 @@ CORS_ALLOWED_ORIGINS = [
 ]
 
 CORS_ALLOWED_ORIGIN_REGEXES = [
-r"^https://.*.vercel.app$",
+    r"^https://.*\.vercel\.app$",
 ]
+
 
 CSRF_TRUSTED_ORIGINS = [
 "https://hos-tracker.vercel.app",
@@ -45,8 +46,8 @@ CSRF_TRUSTED_ORIGINS = [
 ]
 
 MIDDLEWARE = [
-"django.middleware.security.SecurityMiddleware",
 "corsheaders.middleware.CorsMiddleware",
+"django.middleware.security.SecurityMiddleware",
 "django.contrib.sessions.middleware.SessionMiddleware",
 "django.middleware.common.CommonMiddleware",
 "django.middleware.csrf.CsrfViewMiddleware",
