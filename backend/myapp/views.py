@@ -34,8 +34,10 @@ def simulate(request: HttpRequest):
     if not form.is_valid():
         return JsonResponse({"message": "Invalid request body"}, status=400)
 
-    data = fetch_OSRM_data(form=form) # todo: form=None for testing
-    
+    data = fetch_OSRM_data(form=form) # form=None for testing
+
+    if data['code'] != 'Ok':
+        return JsonResponse({"message": data['message']}, status=400)
 
     current_cycle_used_hrs = form.cleaned_data['current_cycle_used_hrs']
     

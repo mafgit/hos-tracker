@@ -59,13 +59,19 @@ export default function Form() {
     >
       <div className="grid grid-cols-2 gap-2">
         <div>
-          <label className="text-gray-900 font-semibold text-sm" htmlFor="current">Current Location</label>
+          <label
+            className="text-gray-900 font-semibold text-sm"
+            htmlFor="current"
+          >
+            Current Location
+          </label>
           <div className="relative">
             <input
-              // required todo:
+              required
               className="text-sm w-full bg-white/50 rounded-md px-2 py-2 text-black"
               type="text"
               placeholder="Chicago, IL"
+              autoComplete="off"
               onChange={handleChange}
               name="current"
               id="current"
@@ -85,13 +91,19 @@ export default function Form() {
         </div>
 
         <div>
-          <label className="text-gray-900 font-semibold text-sm" htmlFor="pickup">Pickup Location</label>
+          <label
+            className="text-gray-900 font-semibold text-sm"
+            htmlFor="pickup"
+          >
+            Pickup Location
+          </label>
           <div className="relative">
             <input
-              // required todo:
+              required
               className="text-sm w-full bg-white/50 rounded-md px-2 py-2 text-black"
               type="text"
               placeholder="Chicago, IL"
+              autoComplete="off"
               onChange={handleChange}
               name="pickup"
               id="pickup"
@@ -111,14 +123,20 @@ export default function Form() {
         </div>
 
         <div>
-          <label className="text-gray-900 font-semibold text-sm" htmlFor="dropoff">Dropoff Location</label>
+          <label
+            className="text-gray-900 font-semibold text-sm"
+            htmlFor="dropoff"
+          >
+            Dropoff Location
+          </label>
           <div className="relative">
             <input
-              // required todo:
+              required
               className="text-sm w-full bg-white/50 rounded-md px-2 py-2 text-black"
               type="text"
               placeholder="Washington, DC"
               onChange={handleChange}
+              autoComplete="off"
               name="dropoff"
               id="dropoff"
               value={inputData.dropoff}
@@ -137,16 +155,20 @@ export default function Form() {
         </div>
 
         <div>
-          <label className="text-gray-900 font-semibold text-sm" htmlFor="currentCycleUsedHrs">
-            Current Cycle Used (Hours)
+          <label
+            className="text-gray-900 font-semibold text-sm"
+            htmlFor="currentCycleUsedHrs flex gap-1 items-center"
+          >
+            Current Cycle Used <small>(hrs)</small>
           </label>
           <input
-            // required todo:
+            required
+            autoComplete="off"
             className="text-sm w-full bg-white/50 rounded-md px-2 py-2 text-black"
             type="number"
             max={70}
             min={0}
-            placeholder="30"
+            placeholder="0-70"
             onChange={handleChange}
             name="currentCycleUsedHrs"
             id="currentCycleUsedHrs"
@@ -162,7 +184,7 @@ export default function Form() {
         Submit
       </button>
 
-      {error && <p className="text-[#ff8688] font-semibold">{error}</p>}
+      {error && <p className="text-[#ffafaf] px-2 py-1 rounded-md font-semibold text-center bg-[#d60000]">{error}</p>}
     </form>
   );
 }

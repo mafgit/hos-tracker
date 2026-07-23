@@ -25,11 +25,12 @@ L.Icon.Default.mergeOptions({
 });
 
 export default function LeafletMap() {
-  const simulationData = useMyStore((s) => s.simulationData);
   const current = useMyStore((s) => s.current);
   const dropoff = useMyStore((s) => s.dropoff);
   const pickup = useMyStore((s) => s.pickup);
   const setFormStep = useMyStore((s) => s.setFormStep);
+  const setSimulationData = useMyStore((s) => s.setSimulationData);
+  const simulationData = useMyStore((s) => s.simulationData);
 
   if (!simulationData || !current || !pickup || !dropoff) {
     return null;
@@ -39,11 +40,16 @@ export default function LeafletMap() {
 
   if (!polygonRoute.length) return null;
 
+  function goBack() {
+    setFormStep(0);
+    setSimulationData(null);
+  }
+
   return (
     <div className="overflow-hidden w-full absolute top-0 left-0 h-full">
       <button
         className="px-2 py-1 cursor-pointer z-50 absolute left-[20px] top-[10px] flex gap-2 items-center justify-center text-xl "
-        onClick={() => setFormStep(0)}
+        onClick={goBack}
       >
         <FaBackward style={{ fontSize: 22 }} className="text-bg" />
       </button>

@@ -26,5 +26,6 @@ export interface MyStoreType {
   formStep: number;
 
   //
-  simulationData: SimulationDataType
+  simulationData: SimulationDataType | null
+  setSimulationData: (simulationData: SimulationDataType | null) => void;
 }

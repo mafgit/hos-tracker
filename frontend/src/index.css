@@ -22,6 +22,11 @@ body {
   color: var(--text);
 }
 
+
+input, button, select {
+  outline: none;
+}
+
 html,
 body,
 input,

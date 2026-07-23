@@ -7,7 +7,6 @@ const startX = 60;
 const boxWidth = 40;
 const startY = 40;
 const endX = startX + boxWidth * 24;
-const endY = 200;
 
 function timeToPixels(time: number): number {
   return Math.floor((time / 25) * 1000) + startX;

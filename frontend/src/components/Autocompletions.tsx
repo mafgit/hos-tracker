@@ -25,7 +25,7 @@ export default function Autocompletions({
     >
       {autocompletions.map((item, i) => (
         <div
-          key={item.osm_id}
+          key={item.osm_id + '-' + i}
           onClick={() => {
             setInputData({
               ...inputData,

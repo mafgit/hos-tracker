@@ -9,6 +9,8 @@ export default function ELDTables() {
   const setMaximized = useMyStore((s) => s.setMaximized);
   const simulationData = useMyStore((s) => s.simulationData);
 
+  if (!simulationData) return null;
+
   return (
     <div
       className={
@@ -38,10 +40,7 @@ export default function ELDTables() {
           onChange={(e) => setSelectedDay(Number(e.target.value))}
         >
           {simulationData.days.map((day, i) => (
-            <option
-              value={i + 1}
-              key={"day-" + i + 1}
-            >
+            <option value={i + 1} key={"day-" + i + 1}>
               Day {i + 1}
             </option>
           ))}
