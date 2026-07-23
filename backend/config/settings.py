@@ -51,13 +51,13 @@ INSTALLED_APPS = [
 #     'http://localhost:5173'
 # ]
 
-CORS_ALLOWED_ORIGINS = ['*']
+CORS_ALLOWED_ORIGINS = ['http://localhost:5173',
+    'http://127.0.0.1:5173']
+FRONTEND_URL = os.environ.get('FRONTEND_URL')
+if FRONTEND_URL:
+    CORS_ALLOWED_ORIGINS.append(FRONTEND_URL)
 
-CSRF_TRUSTED_ORIGINS = ['*']
-# CSRF_TRUSTED_ORIGINS = [
-#     os.environ.get('FRONTEND_URL', 'http://localhost:5173'),
-#     'https://vercel.app'
-# ]
+CSRF_TRUSTED_ORIGINS = CORS_ALLOWED_ORIGINS.copy()
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
