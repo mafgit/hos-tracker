@@ -366,7 +366,7 @@ export async function fetchSuggestions(query: string) {
   // };
 
   if (data.features) {
-    const mappedData = data.features.map((f) => {
+    const mappedData = data.features.map((f: any) => {
       const texts: string[] = [];
 
       for (const key of [

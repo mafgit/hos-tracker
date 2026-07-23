@@ -17,6 +17,7 @@ import { useMyStore } from "../store/useMyStore";
 import { FaBackward, FaTruck } from "react-icons/fa6";
 import { swap } from "../utils/swap";
 
+// @ts-ignore
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
   iconUrl: markerIcon,
