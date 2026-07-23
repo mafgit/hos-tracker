@@ -28,15 +28,17 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure--3sjz@azry6h1i2&hp@gu
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 ALLOWED_HOSTS = ["localhost", "127.0.0.1", ".vercel.app", "hos-tracker-backend.vercel.app"]
 
-CORS_ALLOWED_ORIGINS = [
-"https://hos-tracker.vercel.app",
-"http://localhost:5173",
-"http://127.0.0.1:5173",
-]
+#CORS_ALLOWED_ORIGINS = [
+#"https://hos-tracker.vercel.app",
+#"http://localhost:5173",
+#"http://127.0.0.1:5173",
+#]
 
-CORS_ALLOWED_ORIGIN_REGEXES = [
-    r"^https://.*\.vercel\.app$",
-]
+#CORS_ALLOWED_ORIGIN_REGEXES = [
+#    r"^https://.*\.vercel\.app$",
+#]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 
 CSRF_TRUSTED_ORIGINS = [
