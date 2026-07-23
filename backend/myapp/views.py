@@ -48,22 +48,22 @@ def simulate(request: HttpRequest):
         nonlocal day
 
         max_end_time_day = day * 24
-        max_start_time_day = max_end_time_day - 24
 
         if start > max_end_time_day:
             day += 1
             max_end_time_day = day * 24
-            max_start_time_day = max_end_time_day - 24
             all_days_logs.append([])
 
         if end > max_end_time_day:
-            # break into two days
+            # break into multiple days
             thisDayLog = {"state": state, "from": start % 24, "to": 24}
-            nextDayLog = {"state": state, "from": 0, "to": 24 if end % 24 == 0 else end % 24}
             all_days_logs[day - 1].append(thisDayLog)
-            day += 1
-            all_days_logs.append([])
-            all_days_logs[day - 1].append(nextDayLog)
+            while end > max_end_time_day:
+                nextDayLog = {"state": state, "from": 0, "to": 24 if end % 24 == 0 else end % 24}
+                end -= 24
+                day += 1
+                all_days_logs.append([])
+                all_days_logs[day - 1].append(nextDayLog)
         else:
             all_days_logs[day - 1].append({
                 "state": state,
@@ -127,7 +127,6 @@ def simulate(request: HttpRequest):
                 last_break_time = time
                 state = 'OFF_DUTY' # should be on duty but for simplicity, otherwise need further on_duty -> other states on constraint breaks
                 start_time = time
-                which_day = time // 24
                 time = ((time // 24) + 1) * 24 # to end of day
                 # current_cycle_used_hrs = 0
                 log(state, start=start_time, end=time)
