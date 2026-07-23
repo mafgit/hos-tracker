@@ -7,7 +7,8 @@ import BackgroundVideo from "../components/BackgroundVideo";
 
 export default function Home() {
   const formStep = useMyStore((s) => s.formStep);
-  // return <>{formStep === 0 ? <Form /> : <ELDTable />}</>;
+  const loading = useMyStore((s) => s.loading);
+
   return (
     <>
       {formStep === 0 && <BackgroundVideo />}
@@ -19,13 +20,13 @@ export default function Home() {
 
             <Form />
           </>
-        ) : (
+        ) : formStep === 1 && !loading ? (
           <>
             <ELDTables />
 
             <LeafletMap />
           </>
-        )}
+        ) : null}
       </div>
     </>
   );

@@ -36,12 +36,12 @@ function processDayLogs(oneDayLogs: DayLog[]) {
     const from = `${x1} ${y}`;
     const to = `${x2} ${y}`;
     path.push(from, to);
-
+    
     // sum
     sums[log.state as keyof typeof sums] += log.to - log.from;
   });
-
-  const pathString = oneDayLogs.length > 1 ? path.join(" ") : "";
+  
+  const pathString = oneDayLogs.length > 0 ? path.join(" ") : "";
 
   for (const key in sums) {
     const a = sums[key as keyof typeof sums] as number;
@@ -63,6 +63,8 @@ export default function OneDayELDTable({
 }: {
   oneDayLogs: DayLog[];
 }) {
+  console.log(oneDayLogs);
+  
   const { pathString, sums } = processDayLogs(oneDayLogs);
   return (
     <div className="flex gap-1">
@@ -205,7 +207,7 @@ export default function OneDayELDTable({
               <path
                 d={pathString}
                 fill="none"
-                stroke="red"
+                stroke="#2a3cff"
                 strokeWidth="3"
                 strokeLinejoin="miter"
                 strokeLinecap="square"

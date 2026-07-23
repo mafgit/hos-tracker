@@ -11,6 +11,8 @@ export interface MyStoreType {
   setCurrent: (current: CoordType | null) => void;
   setInputData: (inputData: FormInputDataType) => void;
   error: string;
+  loading: boolean;
+  setLoading: (loading: boolean) => void;
   setError: (error: string) => void;
   inputData: {
     current: string;

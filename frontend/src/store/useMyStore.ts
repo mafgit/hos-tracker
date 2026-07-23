@@ -13,6 +13,8 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
   // dropoff: { lat: 24.902476, lng: 67.038652 },
   // current: { lat: 24.860735, lng: 67.001137 },
   error: "",
+  loading: false,
+  setLoading: (loading: boolean) => set({ loading }),
   setError: (error) => set({ error }),
   setPickup: (pickup) => set({ pickup }),
   setDropoff: (dropoff) => set({ dropoff }),
@@ -50,6 +52,7 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
       inputData: { currentCycleUsedHrs },
     } = get();
     e.preventDefault();
+    set({ loading: true, error: "" });
 
     if (!dropoff || !pickup || !current) {
       set({
@@ -60,6 +63,8 @@ export const useMyStore = create<MyStoreType>((set, get) => ({
     }
 
     const data = await simulate(current, pickup, dropoff, currentCycleUsedHrs);
+
+    set({ loading: false });
 
     if (data.code !== "Ok") {
       set({ error: data.message });

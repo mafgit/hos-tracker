@@ -12,6 +12,7 @@ export default function Form() {
   const inputData = useMyStore((s) => s.inputData);
   const setInputData = useMyStore((s) => s.setInputData);
   const error = useMyStore((s) => s.error);
+  const loading = useMyStore((s) => s.loading);
 
   const [autocompletions, setAutocompletions] = useState<
     AutocompleteItemType[]
@@ -178,10 +179,11 @@ export default function Form() {
       </div>
 
       <button
-        className="w-full text-sm font-semibold px-2 py-2 bg-bg text-white rounded-md cursor-pointer hover:bg-primary transition-colors duration-200"
+        className="w-full text-sm font-semibold px-2 py-2 bg-bg text-white rounded-md cursor-pointer hover:bg-primary transition-colors duration-200 disabled:cursor-not-allowed disabled:bg-primary"
         type="submit"
+        disabled={loading}
       >
-        Submit
+        {loading ? "Loading..." : "Submit"}
       </button>
 
       {error && <p className="text-[#ffafaf] px-2 py-1 rounded-md font-semibold text-center bg-[#d60000]">{error}</p>}
